@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atas - APM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .lista-atas {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .ata {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .ata h2 {
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        .ata p {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .link-doc {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .link-doc:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Atas Públicas - APM</h1>
+</header>
+
+<main class="lista-atas">
+    {% for ata in atas %}
+    <div class="ata-card">
+        <h2>{{ ata.titulo }}</h2>
+        <p><strong>Data:</strong> {{ ata.data_reuniao|date:"d/m/Y" }}</p>
+
+        {% if ata.arquivo %}
+            <a href="{{ ata.arquivo.url }}" target="_blank" class="link-doc">📄 Visualizar Documento</a>
+        {% else %}
+            <p><em>Documento não disponível.</em></p>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>Nenhuma ata cadastrada.</p>
+{% endfor %}
+
+</main>
+
+<div style="text-align:center; margin-top: 30px;">
+    <a href="/" class="link-doc">← Voltar para o Dashboard</a>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard APM</title>
+    <!-- Link para os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        .card p {
+            font-size: 1.5rem;
+            color: #34495e;
+        }
+        .icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .link-admin {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .link-admin:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Dashboard APM</h1>
+</header>
+
+<main class="container">
+    <div class="card">
+        <div class="icon"><i class="fas fa-dollar-sign"></i></div>
+        <h2>Saldo Atual</h2>
+        <p>R$ {{ saldo|floatformat:2 }}</p>
+    </div>
+    <div class="card">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <h2>Membros</h2>
+        <p>{{ total_membros }}</p>
+    </div>
+    <div class="card">
+        <div class="icon"><i class="fas fa-warehouse"></i></div>
+        <h2>Patrimônios</h2>
+        <p>{{ total_patrimonios }}</p>
+    </div>
+    <div class="card">
+        <div class="icon"><i class="fas fa-file-alt"></i></div>
+        <h2>Atas</h2>
+        <p>{{ total_atas }}</p>
+    </div>
+    
+</main>
+
+<div style="text-align:center;">
+    <a href="/admin/" class="link-admin">Ir para o painel administrativo</a>
+</div>
+<div style="text-align:center;">
+    <a href="/admin/cadastro/membroapm/add/" class="link-admin" style="margin-bottom: 10px;">Cadastrar Novo Membro</a>
+    <br>
+    <a href="/admin/" class="link-admin">Ir para o painel administrativo</a>
+</div>
+<div style="text-align:center; margin-top: 10px;">
+    <a href="/atas/" class="link-admin">Consultar Atas Públicas</a>
+</div>
+
+
+</body>
+</html>
