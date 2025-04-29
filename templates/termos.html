@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Termos de Posse - APM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Termos de Posse - APM</h1>
+
+    {% for termo in termos %}
+    <div class="card">
+        <h2>{{ termo.titulo }}</h2>
+        <p><strong>Data:</strong> {{ termo.data_posse|date:"d/m/Y" }}</p>
+
+        {% if termo.arquivo %}
+            <a class="btn" href="{{ termo.arquivo.url }}" target="_blank">
+                <i class="fas fa-file-alt"></i> Visualizar Documento
+            </a>
+        {% else %}
+            <p><em>Documento não disponível.</em></p>
+        {% endif %}
+    </div>
+    {% empty %}
+        <p>Sem termos de posse cadastrados.</p>
+    {% endfor %}
+
+    <div style="margin-top: 30px;">
+        <a class="btn" href="/">← Voltar para o Dashboard</a>
+    </div>
+
+</body>
+</html>

@@ -21,12 +21,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from core.views import home
 from documentos.views import listar_atas
+from documentos.views import listar_atas, listar_termos
+from patrimonio.views import listar_patrimonios
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saldo/', saldo),  # <-- cria a rota "/saldo"
+    path('saldo/', saldo),
     path('', home),
     path('atas/', listar_atas, name='listar_atas'),
+    path('termos/', listar_termos, name='listar_termos'),
+    path('patrimonios/', listar_patrimonios),
 ]
 
 if settings.DEBUG:

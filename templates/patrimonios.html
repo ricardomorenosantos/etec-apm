@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Patrimônios - APM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Patrimônios - APM</h1>
+
+    {% for patrimonio in patrimonios %}
+    <div class="card">
+        <h2>{{ patrimonio.nome }}</h2>
+        <p><strong>Descrição:</strong> {{ patrimonio.descricao }}</p>
+        <p><strong>Data de Aquisição:</strong> {{ patrimonio.data_aquisicao|date:"d/m/Y" }}</p>
+    </div>
+    {% empty %}
+        <p>Não há patrimônios cadastrados.</p>
+    {% endfor %}
+
+    <div style="margin-top: 30px;">
+        <a class="btn" href="/">← Voltar para o Dashboard</a>
+    </div>
+
+</body>
+</html>
